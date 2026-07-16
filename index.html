@@ -11,21 +11,23 @@
 </head>
 <body>
    <header class="header">
-       <div class="logo">
-         <img src="subedi.png" alt="name_logo">
-         
-       </div>
-       <nav class="navbar">
-        <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-       <li> <a href="#myself">About</a></li>
-        <li><a href="#myskill">Skill</a></li>
-        <li><a href="#For-services">Services</a>
-        
-        </li>
-        <li><a href="#contact">Contact</a></li>
-        </ul>
-       </nav>
+        <div class="logo">
+          <img src="subedi.png" alt="name_logo">
+        </div>
+        <nav class="navbar" id="navbar">
+         <ul class="menu">
+         <li><a href="index.html">Home</a></li>
+        <li><a href="#myself">About</a></li>
+         <li><a href="#myskill">Skill</a></li>
+         <li><a href="#For-services">Services</a></li>
+         <li><a href="#contact">Contact</a></li>
+         </ul>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
    </header>
    <section class="home">
       <div class="home-content">
@@ -237,28 +239,66 @@
    
 </body>
   <script>
+    // ---- Typed.js ----
     var typed = new Typed(".modify", {
-    strings: [" Frontend Developer", "Web Designer", "Graphics Designer"],
-    typeSpeed: 100,
-    backSpeed: 100,
-    backDelay: 1000,
-    loop: true
-  });
-document.getElementById("myform").addEventListener("submit", function(e){
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  if(name==""){
-    alert("Name is required!");
-    e.preventDefault();
-  } else if(email==""){
-     alert("Email is required!");
-     e.preventDefault();
-  } else if(!email.includes("@")){
-    alert("please enter a valid email!");
-    e.preventDefault();
-  }
-})
- 
-  
+      strings: ["Frontend Developer", "Web Designer", "Graphics Designer"],
+      typeSpeed: 100,
+      backSpeed: 100,
+      backDelay: 1000,
+      loop: true
+    });
+
+    // ---- Hamburger menu toggle ----
+    const hamburger = document.getElementById("hamburger");
+    const navbar = document.getElementById("navbar");
+
+    hamburger.addEventListener("click", function() {
+      hamburger.classList.toggle("active");
+      navbar.classList.toggle("active");
+    });
+
+    // ---- Close menu on link click (mobile) ----
+    document.querySelectorAll(".navbar a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        hamburger.classList.remove("active");
+        navbar.classList.remove("active");
+      });
+    });
+
+    // ---- Active nav link highlight on scroll ----
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".navbar a");
+
+    window.addEventListener("scroll", function() {
+      let current = "";
+      sections.forEach(function(section) {
+        const top = section.offsetTop - 150;
+        if (window.scrollY >= top) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(function(link) {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // ---- Form validation ----
+    document.getElementById("myform").addEventListener("submit", function(e){
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      if(name==""){
+        alert("Name is required!");
+        e.preventDefault();
+      } else if(email==""){
+        alert("Email is required!");
+        e.preventDefault();
+      } else if(!email.includes("@")){
+        alert("Please enter a valid email!");
+        e.preventDefault();
+      }
+    });
   </script>
  </html>
