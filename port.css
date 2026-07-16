@@ -176,7 +176,15 @@ h1{
 .html{
     color:#e34f26;
 }
-
+.css{
+    color: blue;
+}
+.js{
+    color: yellow;
+}
+.java{
+    color: rgb(50, 148, 180);
+}
 
 
 .item h3{
@@ -441,20 +449,22 @@ section{
     .skill-fill {
       height: 100%;
       border-radius: 5px;
-      background: linear-gradient(90deg, #c95d2e, #f39c12);
       width: 0;
-      animation: fillAnimation 2s forwards;
+      transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    
-    .html { width: 90%; }
-    .css { width: 75%; background: linear-gradient(90deg, #264de4, #2965f1); }
-    .js { width: 60%; background: linear-gradient(90deg, #f0db4f, #f7e018); }
-    .java { width: 40%; background: linear-gradient(90deg, #367cb5, #4B8BBE); }
-
-    @keyframes fillAnimation {
-      from { width: 0; }
-      to { width: var(--target-width); }
+    /* Individual bar colors — width set by JS */
+    .skill-fill.html {
+      background: linear-gradient(90deg, #e34f26, #f39c12);
+    }
+    .skill-fill.css {
+      background: linear-gradient(90deg, #264de4, #2965f1);
+    }
+    .skill-fill.js {
+      background: linear-gradient(90deg, #f0db4f, #f7e018);
+    }
+    .skill-fill.java {
+      background: linear-gradient(90deg, #367cb5, #4B8BBE);
     }
 #For-services h1{
     font-size: 52px;
@@ -552,7 +562,7 @@ section{
       text-align: center;
       align-items: center;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(146, 14, 139, 0.1); 
+      box-shadow: 0 4px 15px rgba(29, 139, 207, 0.1); 
       transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .contact-form:hover{

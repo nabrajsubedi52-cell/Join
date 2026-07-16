@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Nabraj | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="port.css">
    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -126,29 +126,28 @@
       <div class="skill">
         <i style="color:orange" class="fa-brands fa-html5"></i>
        <div class="skill-bar">
-        <div class="skill-fill html" style="--target-width:90%"></div>
+        <div class="skill-fill html" data-progress="90"></div>
       </div>
      </div>
 
      <div class="skill">
       <i style="color: blue;" class="fa-brands fa-css3-alt"></i>
       <div class="skill-bar">
-        <div class="skill-fill css" style="--target-width:75%"></div>
+        <div class="skill-fill css" data-progress="75"></div>
       </div>
      </div>
 
      <div class="skill">
       <i style="color: yellow;" class="fa-brands fa-js"></i>
       <div class="skill-bar">
-        <div class="skill-fill js" style="--target-width:60%"></div>
+        <div class="skill-fill js" data-progress="60"></div>
       </div>
      </div>
 
      <div class="skill">
       <i style="color: blue;" class="fa-brands fa-java"></i>
-      <!-- <h2>java</h2> -->
       <div class="skill-bar">
-        <div class="skill-fill java" style="--target-width:40%"></div>
+        <div class="skill-fill java" data-progress="40"></div>
       </div>
      </div>
     </div>
@@ -210,7 +209,7 @@
   <br> <br>
   <textarea name="message" placeholder="Enter your message" required></textarea>
   <br> <br>
-  <input type = "checkbox" name="terms" required> Accept terms and conditions <br> <br>
+  <div style="display: flex; align-items:center;"><input type = "checkbox" name="terms" required> Accept terms and conditions </div><br> <br>
   <button type="submit">Submit</button>
 </form>
    </div> </center>
@@ -300,5 +299,42 @@
         e.preventDefault();
       }
     });
+
+    // ---- Dynamic Progress Bars (JS-driven animation) ----
+    function animateSkillBars() {
+      var fills = document.querySelectorAll('#myskill .skill-fill');
+      if (!fills.length) return;
+
+      fills.forEach(function(fill, index) {
+        // Get target percentage from data-progress attribute
+        var target = parseInt(fill.getAttribute('data-progress'), 10);
+        if (isNaN(target)) return;
+
+        // Start from 0
+        fill.style.width = '0';
+
+        // Stagger each bar: 200ms delay between each
+        var delay = index * 200;
+
+        setTimeout(function() {
+          // Set the width — CSS transition animates it smoothly
+          fill.style.width = target + '%';
+        }, delay);
+      });
+    }
+
+    // Use IntersectionObserver to trigger animation when skills section is visible
+    var skillsSection = document.getElementById('myskill');
+    if (skillsSection) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateSkillBars();
+            observer.unobserve(entry.target); // Only trigger once
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(skillsSection);
+    }
   </script>
  </html>
