@@ -661,7 +661,7 @@ section{
 
 
 
-/* === RESPONSIVE 1024px === */
+/*  RESPONSIVE 1024px */
 @media (max-width: 1024px) {
     .home-content h1 { font-size: 44px; }
     .home-content h3 { font-size: 26px; }
@@ -750,7 +750,7 @@ section{
     
     .end p { padding: 15px; font-size: 14px; }
     .top { bottom: 20px; right: 20px; }
-    .top i { font-size: 24px; padding: 4px; }
+    .top i { font-size: 30px; padding: 4px; }
 }
 
 /* === RESPONSIVE 480px === */
