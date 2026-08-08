@@ -317,6 +317,7 @@ button:hover{
     height: auto;
     width: 100%;
     border-radius: 8px;
+    left: 5%;
 }
 
 .about-text h2 {
@@ -676,7 +677,7 @@ section{
     .container1 { margin-left: 40px; padding: 60px 50px; }
 }
 
-/* === RESPONSIVE 768px === */
+/* RESPONSIVE 768px  */
 @media (max-width: 768px) {
     .header {
         padding: 12px 20px;
