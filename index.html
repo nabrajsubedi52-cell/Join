@@ -114,8 +114,13 @@
       <h2>About <span>Me</span></h2> 
       <br> <br>
       <h4>Frontend Developer</h4>
-      <p>I am a student interest about technology and web development. I have learned  HTML, CSS and javascript, which allow me to build and style websites. I am studying to become a computer overseer, focusing on understanding and managing computer systems.</p>
-      <a href="#" class="btn-box">More About Me </a>
+      <p>I am a student interest about technology and web development. I have learned  HTML, CSS and javascript, which allow me to build and style websites. I am studying to become a computer Engineering, focusing on understanding and managing computer systems.</p>
+      
+      <div id="hide">
+        <p>I enjoy creating creative designs and learning new digital skills that help me grow personally and professionally.I have also received an internship offer in Graphic Design from HexSoftware, which has inspired me to explore the creative field more deeply.</p>
+      </div>
+        <button class="btn-box" onclick="myfunction()">More about me</button>
+      
      </div>
     </section>
    <h1 class="skillH">My <span> Skills</span></h1>
@@ -188,8 +193,8 @@
       <h4>Let's work Together</h4>
       <p>I’d be excited to hear about your ideas or projects. Let's connect and explore how we can create something great together and don’t hesitate to reach out!</p>
        <div class="contact-list">
-        <li><i class="fa-regular fa-envelope"></i>subedi52@gmail.com</li>
-        <li><i class="fa-solid fa-phone"></i>9845861776</li>
+        <li><i class="fa-regular fa-envelope"></i>nabrajsubedi961@gmail.com</li>
+        <li><i class="fa-solid fa-phone"></i>9762890283</li>
        </div>
        <div class="contact-icon">
         <a href="https://www.facebook.com/share/18ypktozNo/"><i class="fa-brands fa-facebook"></i></a>
@@ -335,6 +340,15 @@
         });
       }, { threshold: 0.3 });
       observer.observe(skillsSection);
+    }
+    function myfunction(){
+          var x = document.getElementById("hide");
+          if(x.style.display ==="none"){
+            x.style.display = "block";
+
+          }else{
+            x.style.display = "none";
+          }
     }
   </script>
  </html>
