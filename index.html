@@ -6,6 +6,7 @@
     <title>Nabraj | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="port.css">
+    
    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
    <!-- <script src="design.js"></script> -->
 </head>
@@ -14,22 +15,23 @@
         <div class="logo">
           <img src="logo.png" alt="name_logo">
         </div>
-        <nav class="navbar" id="navbar">
+        <nav class="navbar" id="navbar" aria-label="Main navigation">
          <ul class="menu">
-         <li><a href="index.html">Home</a></li>
+         <li><a href="#home">Home</a></li>
         <li><a href="#myself">About</a></li>
          <li><a href="#myskill">Skill</a></li>
          <li><a href="#For-services">Services</a></li>
          <li><a href="#contact">Contact</a></li>
          </ul>
         </nav>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation" aria-controls="navbar" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
    </header>
-   <section class="home">
+   
+   <section class="home" id="home">
       <div class="home-content">
         <h3>Hello, I'm</h3>
         <h1>Nab Raj Subedi</h1>
@@ -41,6 +43,10 @@
           <a href="https://www.linkedin.com/in/nab-raj-subedi-93bb75415?utm_source=share_via&utm_content=profile&utm_medium=member_android/"><i class="fa-brands fa-linkedin"></i></a>
         </div> <br>
         <button>Hire Me</button>
+      </div>
+      <div class="photo" aria-hidden="true">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
       </div>
    </section>
    <section class="journey">
@@ -102,10 +108,6 @@
 
 </section>
 
-   <div class="photo">
-    <div class="circle1"></div>
-    <div class="circle2"></div>
-   </div>
    <section class="about" id="about">
       <div class="about-img">
             <img src="hency.jpeg" alt="">
@@ -219,9 +221,19 @@
 </form>
    </div> </center>
 </section>
-<div class="end">
+<footer class="end">
     <p>Developed with love by Nabraj Subedi © 2026</p>
-</div>
+    <div class="footer" >
+        <!-- <h5>Links</h5> -->
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#home">Home</a></li>
+          <li class="mb-2"><a href="#myself">About</a></li>
+          <li class="mb-2"><a href="#myskill">Skill</a></li>
+          <li class="mb-2"><a href="#For-services">Service</a></li>
+          <li class="mb-2"><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+</footer>
 <a href="https://whatsapp.com/dl/" class="top"><i class="fa-brands fa-whatsapp"></i></a>
   
 
@@ -257,8 +269,10 @@
     const navbar = document.getElementById("navbar");
 
     hamburger.addEventListener("click", function() {
-      hamburger.classList.toggle("active");
-      navbar.classList.toggle("active");
+      const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", String(!isExpanded));
+      hamburger.classList.toggle("active", !isExpanded);
+      navbar.classList.toggle("active", !isExpanded);
     });
 
     // ---- Close menu on link click (mobile) ----
@@ -266,7 +280,16 @@
       link.addEventListener("click", function() {
         hamburger.classList.remove("active");
         navbar.classList.remove("active");
+        hamburger.setAttribute("aria-expanded", "false");
       });
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        hamburger.classList.remove("active");
+        navbar.classList.remove("active");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
     });
 
     // ---- Active nav link highlight on scroll ----
